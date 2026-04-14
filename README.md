@@ -1,4 +1,4 @@
-# 🚀 Code Dedup Resolver
+# 🚀 Duplicate Code Resolver
 
 An **AI-powered multi-agent system** that detects code duplication
 across repositories, designs reusable shared libraries, estimates
