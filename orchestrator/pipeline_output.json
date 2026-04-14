@@ -1,0 +1,97 @@
+{
+  "analysis": {
+    "raw_analysis": "```json\n{\n  \"summary\": \"Code duplication detected across multiple repositories with high similarity scores\",\n  \"top_patterns\": [\n    {\n      \"pattern_type\": \"Single-argument functions with similar logic\",\n      \"severity\": \"high\",\n      \"repos_affected\": [\"repo-auth-service\", \"repo-payment-service\"],\n      \"estimated_duplicate_lines\": 8\n    },\n    {\n      \"pattern_type\": \"Multi-argument functions with similar logic\",\n      \"severity\": \"medium\",\n      \"repos_affected\": [\"repo-auth-service\", \"repo-payment-service\"],\n      \"estimated_duplicate_lines\": 18\n    },\n    {\n      \"pattern_type\": \"Short functions with similar logic\",\n      \"severity\": \"low\",\n      \"repos_affected\": [\"repo-auth-service\", \"repo-payment-service\"],\n      \"estimated_duplicate_lines\": 7\n    }\n  ],\n  \"total_duplicate_pairs\": 4,\n  \"risk_level\": \"medium\",\n  \"recommendation\": \"Refactor duplicate code into reusable functions or modules to improve maintainability and reduce technical debt\"\n}\n```",
+    "duplicate_pairs_found": 4,
+    "raw_pairs": [
+      {
+        "fn_a": {
+          "repo": "repo-auth-service",
+          "hash": "4168c8a694",
+          "args": 1,
+          "lines": 4
+        },
+        "fn_b": {
+          "repo": "repo-payment-service",
+          "hash": "cdc4c1e9a6",
+          "args": 1,
+          "lines": 4
+        },
+        "similarity_score": 0.932,
+        "severity": "high"
+      },
+      {
+        "fn_a": {
+          "repo": "repo-auth-service",
+          "hash": "d081c99033",
+          "args": 3,
+          "lines": 9
+        },
+        "fn_b": {
+          "repo": "repo-payment-service",
+          "hash": "7eadd1f21e",
+          "args": 3,
+          "lines": 9
+        },
+        "similarity_score": 0.889,
+        "severity": "medium"
+      },
+      {
+        "fn_a": {
+          "repo": "repo-auth-service",
+          "hash": "f6c4a62e71",
+          "args": 3,
+          "lines": 3
+        },
+        "fn_b": {
+          "repo": "repo-payment-service",
+          "hash": "fc5a9ad288",
+          "args": 3,
+          "lines": 3
+        },
+        "similarity_score": 0.877,
+        "severity": "medium"
+      },
+      {
+        "fn_a": {
+          "repo": "repo-auth-service",
+          "hash": "9d574c84d9",
+          "args": 2,
+          "lines": 3
+        },
+        "fn_b": {
+          "repo": "repo-payment-service",
+          "hash": "13a88a790b",
+          "args": 2,
+          "lines": 4
+        },
+        "similarity_score": 0.834,
+        "severity": "low"
+      }
+    ],
+    "repos": [
+      "repo-auth-service",
+      "repo-payment-service"
+    ]
+  },
+  "abstraction": {
+    "raw_design": "```json\n{\n  \"library_name\": \"common-utils\",\n  \"version\": \"1.0.0\",\n  \"description\": \"A shared library providing reusable functions to reduce code duplication across multiple repositories\",\n  \"modules\": [\n    {\n      \"module_name\": \"common_utils.single_arg_functions\",\n      \"purpose\": \"Provides single-argument functions with similar logic\",\n      \"interfaces\": [\n        {\n          \"name\": \"process_single_arg\",\n          \"signature\": \"def process_single_arg(arg: str) -> str\",\n          \"description\": \"Processes a single string argument and returns the result\",\n          \"replaces_in_repos\": [\"repo-auth-service\", \"repo-payment-service\"]\n        }\n      ]\n    },\n    {\n      \"module_name\": \"common_utils.multi_arg_functions\",\n      \"purpose\": \"Provides multi-argument functions with similar logic\",\n      \"interfaces\": [\n        {\n          \"name\": \"process_multi_args\",\n          \"signature\": \"def process_multi_args(arg1: str, arg2: str, arg3: str) -> str\",\n          \"description\": \"Processes multiple string arguments and returns the result\",\n          \"replaces_in_repos\": [\"repo-auth-service\", \"repo-payment-service\"]\n        }\n      ]\n    },\n    {\n      \"module_name\": \"common_utils.short_functions\",\n      \"purpose\": \"Provides short functions with similar logic\",\n      \"interfaces\": [\n        {\n          \"name\": \"process_short_arg\",\n          \"signature\": \"def process_short_arg(arg1: str, arg2: str) -> str\",\n          \"description\": \"Processes a short string argument and returns the result\",\n          \"replaces_in_repos\": [\"repo-auth-service\", \"repo-payment-service\"]\n        }\n      ]\n    }\n  ],\n  \"installation\": \"pip install common-utils\",\n  \"design_principles\": [\n    \"Dependency Injection\",\n    \"Backward Compatibility\",\n    \"Don't Repeat Yourself (DRY)\",\n    \"Separation of Concerns (SoC)\"\n  ],\n  \"estimated_loc_reduction\": 37\n}\n```",
+    "library_name": "shared-utilities"
+  },
+  "impact": {
+    "raw_impact": "```json\n{\n  \"executive_summary\": \"Consolidating duplicated code into a shared library is expected to save $702 annually and eliminate 20 duplicate lines of code, resulting in improved maintainability and reduced technical debt. This initiative will also reduce monthly hours spent on maintenance by 0.8 hours. The proposed library, 'common-utils', will provide reusable functions to reduce code duplication across multiple repositories.\",\n  \"financial_impact\": {\n    \"annual_savings_usd\": 702,\n    \"monthly_hours_saved\": 0.8,\n    \"lines_eliminated\": 20,\n    \"payback_period_weeks\": 1\n  },\n  \"technical_benefits\": [\n    \"Improved maintainability through reduced code duplication\",\n    \"Enhanced reusability of code across multiple repositories\",\n    \"Simplified dependency management through a shared library\"\n  ],\n  \"risks\": [\n    {\n      \"risk\": \"Integration challenges with existing codebases\",\n      \"likelihood\": \"medium\",\n      \"mitigation\": \"Perform thorough testing and validation before deploying the shared library\"\n    },\n    {\n      \"risk\": \"Potential for over-engineering or unnecessary complexity\",\n      \"likelihood\": \"low\",\n      \"mitigation\": \"Regularly review and refine the shared library to ensure it remains simple and effective\"\n    }\n  ],\n  \"tech_debt_score_before\": 4,\n  \"tech_debt_score_after\": 2,\n  \"priority\": \"high\",\n  \"recommended_action\": \"Implement the proposed 'common-utils' library and refactor duplicate code into reusable functions or modules\",\n  \"timeline_estimate_weeks\": 4\n}\n```",
+    "computed_savings": {
+      "monthly_hours_saved": 0.8,
+      "annual_usd_saved": 702,
+      "lines_eliminated": 20,
+      "duplicate_pairs": 4
+    }
+  },
+  "migration": {
+    "raw_migration_plan": "```json\n{\n  \"plan_name\": \"Migration to shared-lib\",\n  \"total_estimated_days\": 20,\n  \"phases\": [\n    {\n      \"phase_number\": 1,\n      \"name\": \"Library Creation\",\n      \"description\": \"Create the shared library 'common-utils' with reusable functions to reduce code duplication\",\n      \"estimated_days\": 5,\n      \"tasks\": [\n        \"Create a new repository for the shared library\",\n        \"Implement the reusable functions as per the library design\",\n        \"Write unit tests and integration tests for the library\"\n      ],\n      \"success_criteria\": [\n        \"The library is successfully installed and imported in the target repositories\",\n        \"The library functions are correctly replacing the duplicated code\"\n      ],\n      \"rollback_step\": \"Remove the library and revert the changes in the target repositories\"\n    },\n    {\n      \"phase_number\": 2,\n      \"name\": \"Repository Refactoring\",\n      \"description\": \"Refactor the duplicated code in the target repositories to use the shared library\",\n      \"estimated_days\": 10,\n      \"tasks\": [\n        \"Identify and replace the duplicated code with the shared library functions in 'repo-auth-service' and 'repo-payment-service'\",\n        \"Update the dependencies and import statements in the target repositories\",\n        \"Run the tests and validate the functionality\"\n      ],\n      \"success_criteria\": [\n        \"The duplicated code is successfully replaced with the shared library functions\",\n        \"The target repositories are building and running without errors\"\n      ],\n      \"rollback_step\": \"Revert the changes in the target repositories and restore the original duplicated code\"\n    },\n    {\n      \"phase_number\": 3,\n      \"name\": \"Testing and Validation\",\n      \"description\": \"Perform thorough testing and validation of the shared library and the refactored repositories\",\n      \"estimated_days\": 3,\n      \"tasks\": [\n        \"Run the unit tests and integration tests for the shared library\",\n        \"Perform end-to-end testing of the refactored repositories\",\n        \"Validate the functionality and performance\"\n      ],\n      \"success_criteria\": [\n        \"The shared library and the refactored repositories are functioning as expected\",\n        \"No errors or issues are reported during testing\"\n      ],\n      \"rollback_step\": \"Revert the changes and restore the original code if any issues are found\"\n    },\n    {\n      \"phase_number\": 4,\n      \"name\": \"Deployment and Monitoring\",\n      \"description\": \"Deploy the shared library and the refactored repositories to production and monitor for any issues\",\n      \"estimated_days\": 2,\n      \"tasks\": [\n        \"Deploy the shared library to the production environment\",\n        \"Deploy the refactored repositories to the production environment\",\n        \"Monitor the logs and performance metrics for any issues\"\n      ],\n      \"success_criteria\": [\n        \"The shared library and the refactored repositories are successfully deployed to production\",\n        \"No issues are reported during monitoring\"\n      ],\n      \"rollback_step\": \"Revert the changes and restore the original code if any issues are found\"\n    }\n  ],\n  \"testing_checklist\": [\n    \"Unit tests for the shared library\",\n    \"Integration tests for the shared library\",\n    \"End-to-end testing of the refactored repositories\",\n    \"Validation of the functionality and performance\"\n  ],\n  \"rollback_strategy\": \"Revert the changes and restore the original code if any issues are found during testing or deployment\",\n  \"team_requirements\": {\n    \"engineers\": 2,\n    \"reviewers\": 1,\n    \"estimated_total_hours\": 160\n  },\n  \"sample_pr_description\": \"### Migration to shared-lib\\n\\nThis PR migrates the duplicated code to the shared library 'common-utils'.\\n\\n### Changes\\n* Created the shared library 'common-utils'\\n* Refactored the duplicated code in 'repo-auth-service' and 'repo-payment-service' to use the shared library\\n* Updated the dependencies and import statements\\n* Ran the tests and validated the functionality\\n\\n### Testing\\n* Unit tests for the shared library\\n* Integration tests for the shared library\\n* End-to-end testing of the refactored repositories\\n\\n### Review\\nPlease review the changes and test the functionality.\",\n  \"ci_cd_changes\": [\n    \"Update the CI/CD pipeline to include the shared library\",\n    \"Update the dependencies and import statements in the CI/CD pipeline\"\n  ],\n  \"communication_plan\": \"Announce the migration plan to the teams and stakeholders, and provide regular updates on the progress and any issues found\"\n}\n```"
+  },
+  "pipeline_duration_seconds": 6.0,
+  "repos_analyzed": [
+    "repo-auth-service",
+    "repo-payment-service"
+  ]
+}
