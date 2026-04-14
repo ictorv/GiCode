@@ -121,7 +121,7 @@ async def analyze_github(request: GitHubRequest):
         if code_parts:
             repo_codes[repo_name] = "\n\n".join(code_parts)
 
-    # Step 4: fail with full debug info if not enough repos fetched
+    
     if len(repo_codes) < 2:
         raise HTTPException(400, {
             "error": "Could not fetch at least 2 repos.",
