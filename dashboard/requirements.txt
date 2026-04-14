@@ -1,0 +1,9 @@
+groq
+fastapi
+uvicorn
+gitpython
+sentence-transformers
+scikit-learn
+python-dotenv
+requests
+pygments
