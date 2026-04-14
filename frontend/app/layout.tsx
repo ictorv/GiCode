@@ -1,16 +1,23 @@
 import "./globals.css";
 import Navbar from "../components/Navbar";
 
+export const metadata = {
+  title: "CodeMind — Multi-Agent Code Intelligence",
+  description: "AI-powered duplicate detection and shared library design across repositories",
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body className="bg-gray-950 text-white">
+    <html lang="en">
+      <body>
         <Navbar />
-        <div className="max-w-6xl mx-auto p-6">{children}</div>
+        <main style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: "2rem 1.5rem" }}>
+          {children}
+        </main>
       </body>
     </html>
   );
